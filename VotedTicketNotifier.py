@@ -37,9 +37,9 @@ c.execute('''CREATE TABLE IF NOT EXISTS tickets
 # Get current live tickets according to our database
 dbtickets = []
 c.execute("SELECT hash FROM tickets WHERE datevoted IS NULL")
-select = c.fetchall()
+select = [row[0] for row in c.fetchall()]
 if len(select) > 0:
-  dbtickets = list(select[0])
+  dbtickets = list(select)
 #print("db live tickets:\n" + str(dbtickets))
 
 # Get current live tickets according to dcrwallet
