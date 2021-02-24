@@ -4,12 +4,15 @@ This is a simple Python script for setting yourself up with a way to receive not
 
 The script uses the Python library for [Pushover](https://pushover.net/ "Pushover") to send push notifications to your mobile device. You will want to install the Pushover app to your phone if you choose to use this notification method.
 
+* This README is likely to change as I receive feedback to lower the bar and make the setup even easier.
+
 ### How to get started
 1. Copy and rename `sample-config.ini` to `config.ini`.
+2. Install the python pushover library with command `pip install python-pushover`
 2. Replace the values with your Pushover Token and User Key.
 3. Using your preferred method, set up a script to run this script on a recurring schedule (e.g. every 15 minutes). See `RunVotedTicketNotifier.sh` for an example bash script. You can run in a tmux session to keep
-the process going after you exit an ssh session.
-4. Wait for tickets to vote!
+the process going after you exit an ssh session. (e.g. `tmux new -s ticknotif '~/VotedTicketNotifier/RunVotedTicketNotifier.sh'`)
+4. Wait for tickets to vote and to receive notifications!
 
 ### How it works
 
