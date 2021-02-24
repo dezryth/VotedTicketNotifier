@@ -23,7 +23,7 @@ OfficeSpaceMode = 0
 # directly to DsfjHsSkgHCygnm5T68n1XNaCBXKD8D8DSZ
 # ------------------------------------------------------------------------
 
-import sqlite3, json, collections, subprocess, configparser
+import sqlite3, json, collections, subprocess, configparser, sys
 from datetime import datetime
 from pushover import init, Client
 
@@ -40,14 +40,18 @@ c.execute("SELECT hash FROM tickets WHERE datevoted IS NULL")
 select = c.fetchall()
 if len(select) > 0:
   dbtickets = list(select[0])
-print("db live tickets:\n" + str(dbtickets))
+#print("db live tickets:\n" + str(dbtickets))
 
 # Get current live tickets according to dcrwallet
 tickets = []
-getTickets = json.loads(subprocess.check_output("dcrctl --wallet gettickets true", shell=True))
-if len(getTickets) > 0:
-  tickets = list(getTickets["hashes"])
-print("dcrwallet tickets:\n" + str(tickets))
+try:
+  getTickets = json.loads(subprocess.check_output("dcrctl --wallet gettickets true", shell=True))
+  if len(getTickets) > 0:
+    tickets = list(getTickets["hashes"])
+  #print("dcrwallet tickets:\n" + str(tickets))
+except:
+  print("dcrwallet does not appear to be responding. Exiting.")
+  sys.exit()
 
 # Compare lists to determine new tickets and voted tickets. 
 newTickets = set(tickets) - set(dbtickets)  # Tickets that weren't in the database
