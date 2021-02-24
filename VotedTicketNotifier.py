@@ -62,10 +62,11 @@ for x in newTickets:
   c.execute(insertCommand)
   conn.commit()
 
-# print("After INSERT:")
-# c.execute("SELECT * FROM tickets")
-# test = c.fetchall()
-# print(test)
+# if len(newTickets) > 0:
+#   print("After INSERT:")
+#   c.execute("SELECT * FROM tickets")
+#   test = c.fetchall()
+#   print(test)
 
 # Set existing records that weren't present in response as voted by setting datevoted 
 for x in votedTickets:
@@ -74,10 +75,11 @@ for x in votedTickets:
   c.execute(updateCommand)
   conn.commit()
 
-# print("After UPDATE:")
-# c.execute("SELECT * FROM tickets")
-# test = c.fetchall()
-# print(test)
+# if len(votedTickets) > 0:
+#   print("After UPDATE:")
+#   c.execute("SELECT * FROM tickets")
+#   test = c.fetchall()
+#   print(test)
 
 # Notify about any voted tickets
 if (PushoverEnabled and len(votedTickets) > 0):
