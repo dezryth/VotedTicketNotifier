@@ -53,7 +53,9 @@ except:
   print("dcrwallet does not appear to be responding. Exiting.")
   sys.exit()
 
-# Compare lists to determine new tickets and voted tickets. 
+# Sort both lists alphabetically and compare to determine new tickets and voted tickets. 
+dbtickets.sort()
+tickets.sort()
 newTickets = set(tickets) - set(dbtickets)  # Tickets that weren't in the database
 if len(newTickets): print("New Tickets:\n" + str(newTickets))
 votedTickets = set(dbtickets) - set(tickets) # Tickets that weren't returned by the gettickets command.
@@ -86,7 +88,7 @@ for x in votedTickets:
 #   print(test)
 
 # Notify about any voted tickets
-if (PushoverEnabled and len(votedTickets) > 0):
+if (PushoverEnabled and len(votedTickets)):
   config = configparser.ConfigParser()
   config.read("config.ini")
   PushoverToken = config["DEFAULT"]["PushoverToken"]
