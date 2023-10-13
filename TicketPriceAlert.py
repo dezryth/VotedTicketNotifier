@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, configparser
 # pushover library
 from pushover import init, Client
 
