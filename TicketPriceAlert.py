@@ -7,8 +7,10 @@ PushoverEnabled = 0
 # DCRDATA URL
 url="https://dcrdata.decred.org"
 
-# Set Alert Threshold
+# Set Alert Thresholds
 priceAlertThreshold=200
+poolSizeTargetDiffThreshold=-5
+poolTarget=40960
 
 if (PushoverEnabled):
     config = configparser.ConfigParser()
