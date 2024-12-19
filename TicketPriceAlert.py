@@ -26,9 +26,9 @@ try:
     if (resp.status_code != 200):
         print("API Call failed with status code: " + str(resp.status_code))
     else:
-        json = json.loads(resp.text)
-        ticketPrice=json["current"]
-        ticketPriceExpected=json["estimates"]["expected"]
+        pricejson = json.loads(resp.text)
+        ticketPrice = pricejson["current"]
+        ticketPriceExpected = pricejson["estimates"]["expected"]
     
     if (ticketPrice < priceAlertThreshold):
         if (PushoverEnabled):
