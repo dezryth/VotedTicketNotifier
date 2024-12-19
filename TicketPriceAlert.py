@@ -22,7 +22,7 @@ if (PushoverEnabled):
 try:
     # Get stakediff
     resp = requests.get(url + "/api/stake/diff")
-    print(resp.status_code)
+    print("api/stake/diff: " + str(resp.status_code))
     if (resp.status_code != 200):
         print("API Call failed with status code: " + str(resp.status_code))
     else:
